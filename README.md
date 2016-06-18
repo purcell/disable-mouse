@@ -3,8 +3,8 @@
 
 # Disable the mouse globally in Emacs
 
-Want to force yourself to use the keyboard in Emacs? Use this global
-mode to suppress the default mouse behaviours.
+Want to force yourself to use the keyboard in Emacs? Use this local or
+global minor mode to suppress the default mouse behaviours.
 
 ## Installation
 
@@ -15,7 +15,7 @@ add the following to your `~/.emacs` or `~/.emacs.d/init.el`:
 
 ``` lisp
 (require 'disable-mouse)
-(disable-mouse-mode)
+(global-disable-mouse-mode)
 ```
 
 ### MELPA
@@ -25,13 +25,16 @@ If you're an Emacs 24 user or you have a recent version of
 [MELPA](http://melpa.org) repository. The version of
 `disable-mouse` there will always be up-to-date.
 
-Enable `disable-mouse-mode` with `M-x disable-mouse-mode`, by using
+Enable `global-disable-mouse-mode` with `M-x global-disable-mouse-mode`, by using
 the customisation interface, or by adding code such as the following
 to your emacs startup file:
 
 ``` lisp
-(disable-mouse-mode)
+(global-disable-mouse-mode)
 ```
+
+If you want to only disable the mouse in only a certain mode, add
+`disable-mouse-mode` to that mode's hook.
 
 ### Related packages
 
