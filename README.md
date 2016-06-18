@@ -1,7 +1,7 @@
 [![Melpa Status](http://melpa.org/packages/disable-mouse-badge.svg)](http://melpa.org/#/disable-mouse)
 [![Melpa Stable Status](http://stable.melpa.org/packages/disable-mouse-badge.svg)](http://stable.melpa.org/#/disable-mouse)
 
-# Disable the mouse globally in Emacs
+# Disable the mouse in Emacs
 
 Want to force yourself to use the keyboard in Emacs? Use this local or
 global minor mode to suppress the default mouse behaviours.
