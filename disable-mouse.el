@@ -22,9 +22,9 @@
 
 ;;; Commentary:
 
-;; Provides `disable-mouse-mode', a global mode which suppresses all
-;; mouse events by intercepting them and running a customisable
-;; handler command (`ignore' by default).
+;; Provides `disable-mouse-mode' and `global-disable-mouse-mode', pair
+;; of minor modes which suppress all mouse events by intercepting them
+;; and running a customisable handler command (`ignore' by default).
 
 ;;; Code:
 
@@ -39,11 +39,11 @@
   :type 'function)
 
 (defconst disable-mouse--bindings-modifier-combos
-  '(nil "C-" "M-" "S-" "C-M-" "C-S-" "M-S-" "M-C-S-"))
+  '("C-" "M-" "S-" "C-M-" "C-S-" "M-S-" "M-C-S-"))
 
-(defconst disable-mouse--bindings-targets '(nil "bottom-divider" "vertical-line"))
+(defconst disable-mouse--bindings-targets '("bottom-divider" "vertical-line"))
 
-(defconst disable-mouse--multipliers '(nil "double" "triple"))
+(defconst disable-mouse--multipliers '("double" "triple"))
 
 (defconst disable-mouse--bindings
   '("mouse-1" "mouse-2" "mouse-3"
@@ -52,12 +52,14 @@
     "wheel-up" "wheel-down" "wheel-left" "wheel-right"
     ))
 
-(defun disable-mouse--all-bindings ()
+(defun disable-mouse--all-bindings (include-targets)
   "Return an extensive list of mouse-related keybindings."
   (let ((bindings))
-    (dolist (target disable-mouse--bindings-targets)
-      (dolist (mod disable-mouse--bindings-modifier-combos)
-        (dolist (mult disable-mouse--multipliers)
+    (dolist (target (append '(nil)
+                            (when include-targets
+                              disable-mouse--bindings-targets)))
+      (dolist (mod (append '(nil) disable-mouse--bindings-modifier-combos))
+        (dolist (mult (append '(nil) disable-mouse--multipliers))
           (dolist (binding disable-mouse--bindings)
             (push (read-kbd-macro
                    (concat (when target (concat "<" target "> "))
@@ -74,20 +76,35 @@
   (interactive)
   (call-interactively disable-mouse-command))
 
-(defvar disable-mouse-mode-map
+(defconst disable-mouse-mode-map
   (let ((map (make-sparse-keymap)))
-    (dolist (binding (disable-mouse--all-bindings))
+    (dolist (binding (disable-mouse--all-bindings nil))
+      (define-key map binding 'disable-mouse--handle))
+    map)
+  "Map containing no-op bindings for all mouse events.")
+
+(defconst global-disable-mouse-mode-map
+  (let ((map (make-sparse-keymap)))
+    (dolist (binding (disable-mouse--all-bindings t))
       (define-key map binding 'disable-mouse--handle))
     map)
   "Map containing no-op bindings for all mouse events.")
 
 ;;;###autoload
 (define-minor-mode disable-mouse-mode
-  "Disable the mouse globally."
+  "Disable the mouse in the current buffer.
+You can still use the mouse to click into other buffers or
+interact with GUI elements such as divider lines."
   nil
-  :lighter " NoMouse"
-  :global t)
+  :lighter " NoMouse")
 
+;;;###autoload
+(define-minor-mode global-disable-mouse-mode
+  "Disable the mouse globally.
+Interact with GUI elements such as divider lines will also be prevented."
+  nil
+  :lighter " NoMouse!"
+  :global t)
 
 (provide 'disable-mouse)
 ;;; disable-mouse.el ends here
