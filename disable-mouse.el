@@ -1,9 +1,10 @@
-;;; disable-mouse.el --- Disable mouse commands globally  -*- lexical-binding: t; -*-
+;;; disable-mouse.el --- Disable mouse commands globally
 
 ;; Copyright (C) 2016  Steve Purcell
 
 ;; Author: Steve Purcell <steve@sanityinc.com>
 ;; URL: https://github.com/purcell/disable-mouse
+;; Package-Version: 0
 ;; Keywords: mouse
 
 ;; This program is free software; you can redistribute it and/or modify
