@@ -76,14 +76,14 @@
   (interactive)
   (call-interactively disable-mouse-command))
 
-(defconst disable-mouse-mode-map
+(defvar disable-mouse-mode-map
   (let ((map (make-sparse-keymap)))
     (dolist (binding (disable-mouse--all-bindings nil))
       (define-key map binding 'disable-mouse--handle))
     map)
   "Map containing no-op bindings for all mouse events.")
 
-(defconst global-disable-mouse-mode-map
+(defvar global-disable-mouse-mode-map
   (let ((map (make-sparse-keymap)))
     (dolist (binding (disable-mouse--all-bindings t))
       (define-key map binding 'disable-mouse--handle))
