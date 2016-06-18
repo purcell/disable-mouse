@@ -3,6 +3,7 @@
 ;; Copyright (C) 2016  Steve Purcell
 
 ;; Author: Steve Purcell <steve@sanityinc.com>
+;; URL: https://github.com/purcell/disable-mouse
 ;; Keywords: mouse
 
 ;; This program is free software; you can redistribute it and/or modify
