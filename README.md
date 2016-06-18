@@ -3,8 +3,11 @@
 
 # Disable the mouse in Emacs
 
-Want to force yourself to use the keyboard in Emacs? Use this local or
+Want to force yourself to use the keyboard in Emacs, and you don't
+have a cat available to obstruct your trackpad? Use this local or
 global minor mode to suppress the default mouse behaviours.
+
+![Cat disabling trackpad](disable-mouse-cat.jpg)
 
 ## Installation
 
