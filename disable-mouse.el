@@ -38,6 +38,16 @@
   :group 'disable-mouse
   :type 'function)
 
+(defcustom disable-mouse-mode-lighter " NoMouse"
+  "Mode-line lighter for `disable-mouse-mode'."
+  :group 'disable-mouse
+  :type 'string)
+
+(defcustom global-disable-mouse-mode-lighter " NoMouse!"
+  "Mode-line lighter for `global-disable-mouse-mode'."
+  :group 'disable-mouse
+  :type 'string)
+
 (defconst disable-mouse--bindings-modifier-combos
   '("C-" "M-" "S-" "C-M-" "C-S-" "M-S-" "M-C-S-"))
 
@@ -96,14 +106,14 @@
 You can still use the mouse to click into other buffers or
 interact with GUI elements such as divider lines."
   nil
-  :lighter " NoMouse")
+  :lighter disable-mouse-mode-lighter)
 
 ;;;###autoload
 (define-minor-mode global-disable-mouse-mode
   "Disable the mouse globally.
 Interact with GUI elements such as divider lines will also be prevented."
   nil
-  :lighter " NoMouse!"
+  :lighter global-disable-mouse-mode-lighter
   :global t)
 
 (provide 'disable-mouse)
