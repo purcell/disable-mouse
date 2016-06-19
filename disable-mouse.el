@@ -63,7 +63,9 @@
     ))
 
 (defun disable-mouse--all-bindings (include-targets)
-  "Return an extensive list of mouse-related keybindings."
+  "Return an extensive list of mouse-related keybindings.
+When INCLUDE-TARGETS is non-nil, also return bindings that target
+the elements in `disable-mouse--bindings-targets'."
   (let ((bindings))
     (dolist (target (append '(nil)
                             (when include-targets
