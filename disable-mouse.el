@@ -59,6 +59,7 @@
   '("mouse-1" "mouse-2" "mouse-3"
     "up-mouse-1" "up-mouse-2" "up-mouse-3"
     "down-mouse-1" "down-mouse-2" "down-mouse-3"
+    "drag-mouse-1" "drag-mouse-2" "drag-mouse-3"
     "wheel-up" "wheel-down" "wheel-left" "wheel-right"
     ))
 
