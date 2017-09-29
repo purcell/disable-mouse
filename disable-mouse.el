@@ -63,6 +63,13 @@
     "wheel-up" "wheel-down" "wheel-left" "wheel-right"
     ))
 
+(defconst disable-mouse--linux-bindings
+  '("mouse-4" "mouse-5"
+    "up-mouse-4" "up-mouse-5"
+    "down-mouse-4" "down-mouse-5"
+    "drag-mouse-4" "drag-mouse-5"
+    ))
+
 (defun disable-mouse--all-bindings (include-targets)
   "Return an extensive list of mouse-related keybindings.
 When INCLUDE-TARGETS is non-nil, also return bindings that target
@@ -73,7 +80,8 @@ the elements in `disable-mouse--bindings-targets'."
                               disable-mouse--bindings-targets)))
       (dolist (mod (append '(nil) disable-mouse--bindings-modifier-combos))
         (dolist (mult (append '(nil) disable-mouse--multipliers))
-          (dolist (binding disable-mouse--bindings)
+          (dolist (binding (append (if (eq system-type 'gnu/linux)
+                                       disable-mouse--linux-bindings '()) disable-mouse--bindings))
             (push (read-kbd-macro
                    (concat (when target (concat "<" target "> "))
                            mod
