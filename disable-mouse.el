@@ -43,7 +43,7 @@
   :group 'disable-mouse
   :type 'string)
 
-(defcustom global-disable-mouse-mode-lighter " NoMouse!"
+(defcustom disable-mouse-mode-global-lighter " NoMouse!"
   "Mode-line lighter for `global-disable-mouse-mode'."
   :group 'disable-mouse
   :type 'string)
@@ -120,7 +120,7 @@ interact with GUI elements such as divider lines."
   "Disable the mouse globally.
 Interact with GUI elements such as divider lines will also be prevented."
   nil
-  :lighter global-disable-mouse-mode-lighter
+  :lighter disable-mouse-mode-global-lighter
   :global t)
 
 (provide 'disable-mouse)
