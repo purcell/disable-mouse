@@ -100,7 +100,7 @@ the elements in `disable-mouse--bindings-targets'."
     map)
   "Map containing no-op bindings for all mouse events.")
 
-(defvar global-disable-mouse-mode-map
+(defvar disable-mouse-global-mode-map
   (let ((map (make-sparse-keymap)))
     (dolist (binding (disable-mouse--all-bindings t))
       (define-key map binding 'disable-mouse--handle))
@@ -116,12 +116,16 @@ interact with GUI elements such as divider lines."
   :lighter disable-mouse-mode-lighter)
 
 ;;;###autoload
-(define-minor-mode global-disable-mouse-mode
+(define-minor-mode disable-mouse-global-mode
   "Disable the mouse globally.
 Interact with GUI elements such as divider lines will also be prevented."
   nil
+  :require 'disable-mouse
   :lighter disable-mouse-mode-global-lighter
   :global t)
+
+;;;###autoload
+(defalias 'global-disable-mouse-mode 'disable-mouse-global-mode)
 
 (provide 'disable-mouse)
 ;;; disable-mouse.el ends here
