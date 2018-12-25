@@ -101,19 +101,22 @@ the elements in `disable-mouse--bindings-targets'."
   (interactive)
   (call-interactively disable-mouse-command))
 
-(defvar disable-mouse-mode-map
-  (let ((map (make-sparse-keymap)))
-    (dolist (binding (disable-mouse--all-bindings nil))
-      (define-key map binding 'disable-mouse--handle))
-    map)
+;;;###autoload
+(defun disable-mouse-in-keymap (map &optional include-targets)
+  "Rebind all mouse commands in MAP so that they are disabled.
+When INCLUDE-TARGETS is non-nil, also disable mouse actions that
+target GUI elements such as the modeline."
+  (dolist (binding (disable-mouse--all-bindings include-targets))
+    (define-key map binding 'disable-mouse--handle)))
+
+(defvar disable-mouse-mode-map (make-sparse-keymap)
   "Map containing no-op bindings for all mouse events.")
 
-(defvar disable-mouse-global-mode-map
-  (let ((map (make-sparse-keymap)))
-    (dolist (binding (disable-mouse--all-bindings t))
-      (define-key map binding 'disable-mouse--handle))
-    map)
+(defvar disable-mouse-global-mode-map (make-sparse-keymap)
   "Map containing no-op bindings for all mouse events.")
+
+(disable-mouse-in-keymap disable-mouse-mode-map)
+(disable-mouse-in-keymap disable-mouse-global-mode-map t)
 
 ;;;###autoload
 (define-minor-mode disable-mouse-mode
