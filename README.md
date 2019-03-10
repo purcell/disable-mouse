@@ -36,6 +36,9 @@ snippet like the following in addition to that above:
         evil-insert-state-map))
 ```
 
+Note that you won't be able to restore those Evil mouse bindings by turning off
+`disable-mouse-mode`. You'll need to restart Emacs instead.
+
 ### MELPA
 
 If you're an Emacs 24 user or you have a recent version of
