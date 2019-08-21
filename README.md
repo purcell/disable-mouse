@@ -17,7 +17,7 @@ global minor mode to suppress the default mouse behaviours.
 Ensure `disable-mouse.el` is in a directory on your load-path, and
 add the following to your `~/.emacs` or `~/.emacs.d/init.el`:
 
-``` lisp
+```elisp
 (require 'disable-mouse)
 (global-disable-mouse-mode)
 ```
@@ -28,7 +28,7 @@ events. `disable-mouse` provides a function `disable-mouse-in-keymap`
 which you can use to neutralise any keymap, so Evil users might use a
 snippet like the following in addition to that above:
 
-```lisp
+```elisp
 (mapc #'disable-mouse-in-keymap
   (list evil-motion-state-map
         evil-normal-state-map
@@ -50,7 +50,7 @@ Enable `global-disable-mouse-mode` with `M-x global-disable-mouse-mode`, by usin
 the customisation interface, or by adding code such as the following
 to your emacs startup file:
 
-``` lisp
+```elisp
 (global-disable-mouse-mode)
 ```
 
