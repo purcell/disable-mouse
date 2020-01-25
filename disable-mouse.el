@@ -33,6 +33,11 @@
   :prefix "disable-mouse-"
   :group 'mouse)
 
+(defcustom disable-mouse-middle-click-pastable nil
+  "The middle mouse button still clickable."
+  :group 'disable-mouse
+  :type 'boolean)
+
 (defcustom disable-mouse-command 'ignore
   "The command to run when a mouse action is attempted."
   :group 'disable-mouse
@@ -55,6 +60,8 @@
 
 (defconst disable-mouse--multipliers '("double" "triple"))
 
+(defconst disable-mouse--middle-button-number 2)
+
 (defconst disable-mouse--button-numbers '(1 2 3 4 5))
 
 (defconst disable-mouse--button-events '("mouse" "up-mouse" "down-mouse" "drag-mouse"))
@@ -64,12 +71,14 @@
 Before `disable-mouse' is loaded, you can set this to nil if you
 do not want to disable mouse wheel events.")
 
-(defconst disable-mouse-button-bindings
+(defvar disable-mouse-button-bindings
   (apply 'append
          (mapcar (lambda (n)
                    (mapcar (lambda (e) (format "%s-%d" e n))
                            disable-mouse--button-events))
-                 disable-mouse--button-numbers)))
+                 (if disable-mouse-middle-click-pastable
+                     (remove disable-mouse--middle-button-number disable-mouse--button-numbers)
+                   disable-mouse--button-numbers))))
 
 (defvar disable-mouse-bindings
   (append disable-mouse-button-bindings disable-mouse-wheel-events)
