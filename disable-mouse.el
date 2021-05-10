@@ -124,14 +124,12 @@ target GUI elements such as the modeline."
   "Disable the mouse in the current buffer.
 You can still use the mouse to click into other buffers or
 interact with GUI elements such as divider lines."
-  nil
   :lighter disable-mouse-mode-lighter)
 
 ;;;###autoload
 (define-minor-mode disable-mouse-global-mode
   "Disable the mouse globally.
 Interact with GUI elements such as divider lines will also be prevented."
-  nil
   :require 'disable-mouse
   :lighter disable-mouse-mode-global-lighter
   :global t)
