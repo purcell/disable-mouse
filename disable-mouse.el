@@ -124,7 +124,10 @@ target GUI elements such as the modeline."
   "Disable the mouse in the current buffer.
 You can still use the mouse to click into other buffers or
 interact with GUI elements such as divider lines."
-  :lighter disable-mouse-mode-lighter)
+  :lighter disable-mouse-mode-lighter
+  (if disable-mouse-mode
+      (set (make-local-variable 'mouse-highlight) nil)
+    (kill-local-variable 'mouse-highlight)))
 
 ;;;###autoload
 (define-minor-mode disable-mouse-global-mode
