@@ -52,7 +52,7 @@
 (defconst disable-mouse--bindings-modifier-combos
   '("C-" "M-" "S-" "C-M-" "C-S-" "M-S-" "M-C-S-"))
 
-(defconst disable-mouse--bindings-targets '("mode-line" "bottom-divider" "vertical-line"))
+(defconst disable-mouse--bindings-targets '("right-margin" "mode-line" "bottom-divider" "vertical-line"))
 
 (defconst disable-mouse--multipliers '("double" "triple"))
 
