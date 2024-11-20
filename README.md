@@ -6,9 +6,14 @@
 
 Want to force yourself to use the keyboard in Emacs, and you don't
 have a cat available to obstruct your trackpad? Use this local or
-global minor mode to suppress the default mouse behaviours.
+global minor mode to suppress the default mouse behaviours, as an
+alternative to using a cat (see picture below).
 
-![Cat disabling trackpad](disable-mouse-cat.jpg)
+You might also consider the [inhibit-mouse](https://github.com/jamescherti/inhibit-mouse.el)
+package instead, which uses a more elaborate approach that better handles certain modes like `evil`,
+and the built-in `tab-bar`.
+
+![Cat disabling trackpad by lying across it while the author tries to continue working](disable-mouse-cat.jpg)
 
 ## Installation
 
@@ -39,6 +44,9 @@ snippet like the following in addition to that above:
 Note that you won't be able to restore those Evil mouse bindings by turning off
 `disable-mouse-mode`. You'll need to restart Emacs instead.
 
+(As noted above, Evil users are likely to prefer the
+[inhibit-mouse](https://github.com/jamescherti/inhibit-mouse.el) package.)
+
 ### MELPA
 
 If you're an Emacs 24 user or you have a recent version of
@@ -62,6 +70,10 @@ If you want to only disable the mouse in only a certain mode, add
 After writing this, I found
 [handoff](https://github.com/rejeep/handoff.el), which has a similar
 goal, but aims for more annoyance and frivolity.
+
+[inhibit-mouse](https://github.com/jamescherti/inhibit-mouse.el) provides only a global mode,
+but it works by using `input-decode-map`, which gives better results overall, particularly for `evil` users.
+These days you should probaby prefer that package to this one.
 
 
 ## About
